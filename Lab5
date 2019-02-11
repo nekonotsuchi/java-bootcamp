@@ -1,0 +1,81 @@
+5.1
+Class 1: CustomerInfo
+
+Class 2: AccountTransactions
+
+5.2
+
+Class 1 Data Fields | Class 1 Data Field Types
+-----------------------------------------------
+customerAccountID   | int 
+-----------------------------------------------
+firstName           | String  
+-----------------------------------------------
+lastName            | String
+-----------------------------------------------
+address             | String
+-----------------------------------------------
+city                | String
+-----------------------------------------------
+state               | String
+-----------------------------------------------
+zipCode             | String
+-----------------------------------------------
+phoneNumber         | int 
+
+
+Class 2 Data Fields | Class 2 Data Field Types
+----------------------------------------------
+accountNumber       | int
+----------------------------------------------
+memberIDNumber      | int
+----------------------------------------------
+accountBalance      | double
+
+5.3
+Class 1
+Method Name           | Parameter Type | Return Type
+---------------------------------------------------
+getCustomerAccountID  | void           | int
+---------------------------------------------------
+setCutomerAccountID   | int            | void
+---------------------------------------------------
+getFirstName          | void           | String
+---------------------------------------------------
+setFirstName          | String         | void
+---------------------------------------------------
+getLastName           | void           | String
+---------------------------------------------------
+setLastName           | String         | void
+---------------------------------------------------
+getAddress            | void           | String
+---------------------------------------------------
+setAddress            | String         | void
+---------------------------------------------------
+getCity               | void           | String
+---------------------------------------------------
+setCity               | String         | void
+---------------------------------------------------
+getState              | void           | String
+---------------------------------------------------
+setState              | String         | void
+---------------------------------------------------
+getZipCode            | void           | String
+---------------------------------------------------
+setZipCode            | String         | void
+---------------------------------------------------
+getPhoneNumber        | void           | int
+---------------------------------------------------
+setPhoneNumber        | int            | void
+---------------------------------------------------
+
+Class 2
+Method Name           | Parameter Type | Return Type
+---------------------------------------------------
+getBalance            | void           | double
+---------------------------------------------------
+getAccountIDNumber    | void           | int
+---------------------------------------------------
+withdrawal            | double         | void
+---------------------------------------------------
+deposit               | double         | void
