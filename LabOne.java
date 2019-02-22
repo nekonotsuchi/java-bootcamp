@@ -1,24 +1,50 @@
-package unit09.mySolutions;
+package unit10.mySolutions;
 
-import unit09.solutions.Almanac;
-import unit09.solutions.Book;
-import unit09.solutions.Novel;
-import unit09.solutions.Phone;
+import unit10.solutions.NumberHighException;
+import unit10.solutions.NumberLowException;
+import unit10.solutions.NumberNegativeException;
+import unit10.solutions.Verify;
 
 public class LabOne {
-	   public static void main(String [] args) {
-	      Book [] library = new Book [5];
+public static void main(String [] args) {
+   int number = 0;
 
-	      library[0] = new Novel("Jaws", 300, 15);
-	      library[1] = new Almanac("New World Almanac", 100, 50);
-	      library[2] = new Novel("Animal Farm", 250, 9);
-	      library[3] = new Phone("Princeton Area", 125, 275);
+   Verify ok = new Verify();
 
-	      listBooks(library);
-	   }
+   if(args.length != 1) {
+      System.err.println("Need single integer arg");
+      System.exit(1);
+   }
 
-	   static void listBooks(Book [] library) {
-	      for(int i = 0; library[i] != null; i++)
-	         library[i].print(); 
-	   }       
-	}
+   try {
+      number = Integer.parseInt(args[0]);
+   }
+
+   // check to make sure argument was an integer
+   catch(NumberFormatException e) {
+      System.err.println("Argument must be integer");
+      System.exit(2);
+   }
+
+   try {
+      ok.verifyNumber(number);
+   }
+   
+   // Catches exceptions in main method
+   catch(NumberHighException e) {
+      System.out.println("NumberHigh: " + e.getMessage());
+   }
+   catch(NumberLowException e) {
+   
+      if(e instanceof NumberLowException)
+         System.out.print("NumberLowException: ");       
+                 
+      if(e instanceof NumberNegativeException)
+         System.out.print("NumberNegativeException: ");
+
+      System.out.println(e.getMessage());
+   } finally {
+      System.out.println("Number from finally " + number);
+   }       
+}
+}

@@ -1,35 +1,37 @@
-package unit09.mySolutions;
+package unit10.mySolutions;
 
-import unit09.solutions.SavingsAccount;
+import unit10.solutions.IntegerStack;
+import unit10.solutions.StackEmptyException;
+import unit10.solutions.StackFullException;
 
 public class LabTwo {
 	   public static void main(String [] args) {
-	      SavingsAccount savings =
-	            new SavingsAccount("Savings",1000.00, 0.05);
+	      IntegerStack myStack = new IntegerStack(5);
 
-	      // Prints account statement
-	      savings.printStatement();
+	      // Tests empty stack
+	      try {
+	         myStack.print();
+	      } catch(StackEmptyException e) {
+	         System.err.println(e.getMessage() + " nothing to print");
+	      }
 
-	      // Makes deposit and prints new balance
-	      savings.deposit(500.00);
-	      savings.printStatement();
+	      try {
+	         myStack.push(90);
+	         myStack.push(3);
+	         myStack.push(243);
+	         myStack.push(15);
+	         myStack.push(57);
+	         myStack.push(305);  // test full stack
+	      } catch(StackFullException e) {
+	         System.err.println(e.getMessage() + " ignoring push");
+	      } finally {
+	         try {
+	            myStack.print();
+	         }
 
-// Makes withdrawal and prints account statement
-// Prints error message if insufficient funds 
-	      if(savings.withdraw(200.00) == false)
-	         System.err.println("Insufficient funds");
-	      else
-	         savings.printStatement(); 
-
-// Posts interest and prints account statement
-	      savings.postInterest();
-	      savings.printStatement();
-
-// Makes withdrawal and prints account statement
-// Prints error message if insufficient funds 
-	      if(savings.withdraw(5000.00) == false)
-	         System.err.println("Insufficient funds");
-	      else
-	         savings.printStatement();            
-	   }       
+	         catch(StackEmptyException e) {
+	            System.err.println(e.getMessage() +  " nothing to print");
+	         }
+	      }
+	   }
 	}
