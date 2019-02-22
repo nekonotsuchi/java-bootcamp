@@ -1,37 +1,45 @@
-package unit10.mySolutions;
+package unit11.mySolutions;
 
-import unit10.solutions.IntegerStack;
-import unit10.solutions.StackEmptyException;
-import unit10.solutions.StackFullException;
+// Reads file containing ints and writes numbers as chars
 
-public class LabTwo {
-	   public static void main(String [] args) {
-	      IntegerStack myStack = new IntegerStack(5);
+import java.io.*;
 
-	      // Tests empty stack
-	      try {
-	         myStack.print();
-	      } catch(StackEmptyException e) {
-	         System.err.println(e.getMessage() + " nothing to print");
-	      }
+public class LabTwo {  
+   public static void main(String [] args) throws IOException {
+      DataInputStream in = null;
+      PrintWriter out = null;
+      int num;
 
-	      try {
-	         myStack.push(90);
-	         myStack.push(3);
-	         myStack.push(243);
-	         myStack.push(15);
-	         myStack.push(57);
-	         myStack.push(305);  // test full stack
-	      } catch(StackFullException e) {
-	         System.err.println(e.getMessage() + " ignoring push");
-	      } finally {
-	         try {
-	            myStack.print();
-	         }
+      if(args.length != 2) {
+         System.err.println("Need input/output file names");
+         System.exit(1);
+      } 
 
-	         catch(StackEmptyException e) {
-	            System.err.println(e.getMessage() +  " nothing to print");
-	         }
-	      }
-	   }
-	}
+      try {
+         in = new DataInputStream(new FileInputStream(args[0]));
+      }
+      catch(IOException e) {
+         System.err.println("Cannot open input file: " + args[0]);
+         System.exit(2);
+      }
+
+      out = new PrintWriter(new FileOutputStream(args[1]));
+      if(out.checkError()) {
+         System.err.println("Cannot open output file: " + args[1]);
+         System.exit(3);
+      }
+      
+      try {
+         while(true) {
+            num = in.readInt();
+            out.println("Number: " + num);
+         }
+      }
+// Throws EOFException on end of file
+      catch(EOFException e) {
+         System.out.println("End of file");
+      }
+      in.close();
+      out.close();
+   }
+}
