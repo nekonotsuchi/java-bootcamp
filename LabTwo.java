@@ -1,38 +1,35 @@
-package unit07.mySolutions;
+package unit09.mySolutions;
 
-/*
-Reads input from terminal, populates array with input,
-then reverses input and prints result.
-*/
-
-import java.io.*;
+import unit09.solutions.SavingsAccount;
 
 public class LabTwo {
-	
-  public static void main(String[] args) 
-  throws IOException {
-	  
-      int array = 0;
-      char [] line = new char[120];
-      int ch;
+	   public static void main(String [] args) {
+	      SavingsAccount savings =
+	            new SavingsAccount("Savings",1000.00, 0.05);
 
-      System.out.println("Enter text (^Z to end):");
+	      // Prints account statement
+	      savings.printStatement();
 
-      while((ch = System.in.read()) != -1) {
-    	  
-          if(array >= line.length) {
-              System.err.println("Please enter > 120 characters");
-          break;
-          }
-          
-          if(ch == '\n') {
-              while(array > 0)
-                  System.out.print(line[--array]);
-              System.out.println("\n");
-          }
-          
-          else
-              line[array++] = (char)ch;
-      }
-   }
-}
+	      // Makes deposit and prints new balance
+	      savings.deposit(500.00);
+	      savings.printStatement();
+
+// Makes withdrawal and prints account statement
+// Prints error message if insufficient funds 
+	      if(savings.withdraw(200.00) == false)
+	         System.err.println("Insufficient funds");
+	      else
+	         savings.printStatement(); 
+
+// Posts interest and prints account statement
+	      savings.postInterest();
+	      savings.printStatement();
+
+// Makes withdrawal and prints account statement
+// Prints error message if insufficient funds 
+	      if(savings.withdraw(5000.00) == false)
+	         System.err.println("Insufficient funds");
+	      else
+	         savings.printStatement();            
+	   }       
+	}
